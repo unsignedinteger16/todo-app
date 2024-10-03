@@ -1,7 +1,35 @@
 services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: /run/secrets/db_password
+      POSTGRES_USER: /run/secrets/db_user
+    secrets:
+      - db_password
+      - db_user
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  
   webapp:
+    depends_on:
+      - db
     build: todo-webapp
     ports:
       - "8000:8000"
     environment:
-      - NODE_TLS_REJECT_UNAUTHORIZED=0
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      POSTGRES_PASSWORD: /run/secrets/db_password
+      POSTGRES_USER: /run/secrets/db_user
+    secrets:
+      - db_password
+      - db_user
+
+secrets:
+  db_password:
+     file: secrets/db_password.txt
+  db_user:
+     file: secrets/db_user.txt
+
+volumes:
+  db_data:
