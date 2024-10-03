@@ -1,0 +1,7 @@
+services:
+  webapp:
+    build: todo-webapp
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
