@@ -6,4 +6,9 @@ Parts:
  - App: Web Application and API part
 
 Used technologies:
-
+ - Docker
+ - PostgreSQL
+ - Rust
+ - Rocket
+ - Handlebars
+ - pico.css
