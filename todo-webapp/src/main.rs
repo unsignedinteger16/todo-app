@@ -1,11 +1,12 @@
 mod website;
 mod errors;
 
-use rocket::{launch, routes};
+use rocket::{catchers, launch, routes};
 use rocket::fs::{relative, FileServer};
 use rocket_dyn_templates::Template;
 
 use website::{ index };
+use errors::{ error_catcher };
 
 #[launch]
 fn rocket() -> _ {
@@ -15,4 +16,5 @@ fn rocket() -> _ {
         .mount("/", routes![
             index,
         ])
+        .register("/", catchers![error_catcher])
 }
