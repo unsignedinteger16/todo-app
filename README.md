@@ -1,5 +1,7 @@
 ## Todo App - Simple ToDo app
 
+## FOR NOW I STOPPED DEVELOPMENT OF TODO-APP
+
 This is created with scalability in mind
 
 Parts:
